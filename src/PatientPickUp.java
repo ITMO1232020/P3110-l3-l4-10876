@@ -1,3 +1,3 @@
 public interface PatientPickUp {
-    public void pickUp(Patient patient, Place place);
+    void pickUp(Patient patient, Place place);
 }
