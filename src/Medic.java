@@ -12,7 +12,8 @@ public class Medic extends Person implements PatientPickUp, PatientCondition{
         setName(name);
         setPlace(place);
     }
-
+    
+    @Override
     public void status(Patient patient){
         if (patient.getHealth() == Health.HEALTHY){
             System.out.println(patient.getName() + " is not sick anymore. He can leave the " + Place.HOSPITAL + ".");
@@ -20,6 +21,7 @@ public class Medic extends Person implements PatientPickUp, PatientCondition{
         else System.out.println(patient.getName() + " is not cured. He should still rest at " + Place.HOSPITAL + ".");
     }
 
+    @Override
     public void report (Patient patient) {
         System.out.println(getName() + " made patient's report.");
         System.out.println("Patient " + patient.getName() + " has following illnesses:");
@@ -28,6 +30,8 @@ public class Medic extends Person implements PatientPickUp, PatientCondition{
         }
         System.out.println("Patient's health status is: " + patient.getHealth() + "!");
     }
+
+    @Override
     public void compareMood(Patient patient1, Patient patient2){
         int moodDifference = patient1.getMood() - patient2.getMood();
         if (moodDifference == 0){
@@ -43,6 +47,7 @@ public class Medic extends Person implements PatientPickUp, PatientCondition{
         }
     }
 
+    @Override
     public void pickUp (Patient patient, Place place){
         if (patient.getHasFallen()) {
             patient.setHasFallen(false);

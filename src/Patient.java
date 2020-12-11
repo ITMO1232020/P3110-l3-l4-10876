@@ -75,10 +75,12 @@ public class Patient extends Person implements Running, Falling, Resting {
         }
     }
 
+    @Override
     public void run (int steps, Place place) {
         System.out.println(getName() + " ran " + steps + " steps in " + place + "!");
     }
 
+    @Override
     public void fell (){
         if (!hasFallen) {
             hasFallen = true;
@@ -86,7 +88,8 @@ public class Patient extends Person implements Running, Falling, Resting {
             addIllness("leg pain");
         }
     }
-
+    
+    @Override
     public void rest (Place place, Time time) {
         System.out.println(getName() + " slept in " + place + " at " + time + ".");
         if (place == Place.BED && time == Time.NIGHT && !illnesses.isEmpty()){
