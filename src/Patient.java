@@ -47,8 +47,6 @@ public class Patient extends Person implements Running, Falling, Resting {
 
     public void setMood(int mood) {
         if (0 < mood && mood <= 5) this.mood = mood;
-        else
-            System.out.println("Mood valued not applied. Please choose number in 1 to 5 span. Each number representing mood value accordingly.");
     }
 
     public void setHasFallen (boolean hasFallen) {
@@ -66,39 +64,46 @@ public class Patient extends Person implements Running, Falling, Resting {
         }
         health = Health.SICK;
     }
-
-    public void cured (Medic medic, String illness){
+    
+    public String illnessesCheck () {
+        return (getName() + " has following illneses: " + getIllnesses()) + ".";
+    }
+    
+    public String cured (Medic medic, String illness){
         if(illnesses.contains(illness)) {
             illnesses.remove(illness);
             if(illnesses.isEmpty()) health = Health.HEALTHY;
-            System.out.println(medic.getName() + " cured " + getName() + "'s " + illness + "!");
+            return (medic.getName() + " cured " + getName() + "'s " + illness + "!");
         }
+        else return null;
     }
 
     @Override
-    public void run (int steps, Place place) {
-        System.out.println(getName() + " ran " + steps + " steps in " + place + "!");
+    public String run (int steps, Place place) {
+        return (getName() + " ran " + steps + " steps in " + place + "!");
     }
 
     @Override
-    public void fell (){
+    public String fell (){
         if (!hasFallen) {
             hasFallen = true;
-            System.out.println(getName() + " fell and hurt his leg!");
             addIllness("leg pain");
+            return (getName() + " fell and hurt his leg!");
         }
-    }
-    
-    @Override
-    public void rest (Place place, Time time) {
-        System.out.println(getName() + " slept in " + place + " at " + time + ".");
-        if (place == Place.BED && time == Time.NIGHT && !illnesses.isEmpty()){
-            int illnessIndex = (int) Math.floor(Math.random() * illnesses.size());
-            System.out.println(getName() + " woke up and lost following illness: " + illnesses.get(illnessIndex) + "!");
-            illnesses.remove(illnessIndex);
-        }
+        else return null;
     }
 
+    @Override
+    public String rest (Place place, Time time) {
+        if (place != Place.BED || time != Time.NIGHT || illnesses.isEmpty()) {
+            return (getName() + " slept in " + place + " at " + time + ", and is not feeling better.");
+        }
+        else {
+            int illnessIndex = (int) Math.floor(Math.random() * illnesses.size());
+            illnesses.remove(illnessIndex);
+            return (getName() + " woke up and is feeling better!");
+        }
+    }
 
     @Override
     public String toString() {
@@ -115,13 +120,13 @@ public class Patient extends Person implements Running, Falling, Resting {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Patient)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Patient patient = (Patient) o;
         return mood == patient.mood &&
                 hasFallen == patient.hasFallen &&
                 health == patient.health &&
-                illnesses.equals(patient.illnesses);
+                Objects.equals(illnesses, patient.illnesses);
     }
 
     @Override

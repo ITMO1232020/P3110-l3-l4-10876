@@ -1,3 +1,3 @@
 public interface Falling {
-    void fell();
+    String fell();
 }

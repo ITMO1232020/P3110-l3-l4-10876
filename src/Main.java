@@ -2,28 +2,27 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Medic Medunitsa = new Medic("Medunitsa");
-        Medic MedicalStaff = new Medic();
-        Patient Pulka = new Patient("Pulka",2,"Leg pain");
-        Patient Vorchun = new Patient("Vorchun", 4, Health.SICK);
-        Patient Pilulkin = new Patient("Pilulkin", 4, Health.SICK);
-        Vorchun.setHealth(Health.HEALTHY);
-        Medunitsa.report(Pulka);
-        Medunitsa.compareMood(Pulka, Vorchun);
-        Medunitsa.compareMood(Pulka, Pilulkin);
+        Medic medunitsa = new Medic("Medunitsa");
+        Medic medicalStaff = new Medic();
+        Patient pulka = new Patient("Pulka",2,"leg pain");
+        Patient vorchun = new Patient("Vorchun", 4, Health.SICK);
+        Patient pilulkin = new Patient("Pilulkin", 4, Health.SICK);
 
-        Pulka.rest(Place.BED, Time.NIGHT);
-        Pulka.rest(Place.BED, Time.DAY);
-        Pulka.run(10, Place.WARD);
-        Pulka.fell();
-        Pulka.addIllness("swelling");
+        System.out.println(pulka.illnessesCheck());
+        System.out.println(medunitsa.compareMood(pulka, vorchun));
+        System.out.println(medunitsa.compareMood(pulka, pilulkin));
 
-        MedicalStaff.pickUp(Pulka, Place.BED);
-        Pulka.addIllness("temperature");
+        System.out.println(pulka.rest(Place.BED, Time.NIGHT));
+        System.out.println(pulka.run(10, Place.WARD));
+        System.out.println(pulka.fell());
+        pulka.addIllness("swelling");
 
-        Medunitsa.report(Pulka);
-        Pulka.cured(Medunitsa, "swelling");
-        Medunitsa.status(Pulka);
+        System.out.println(medicalStaff.pickUp(pulka, Place.BED));
+        pulka.addIllness("temperature");
+
+        System.out.println(pulka.cured(medunitsa, "swelling"));
+        System.out.println(pulka.illnessesCheck());
+        System.out.println(medunitsa.status(pulka));
 
     }
 }

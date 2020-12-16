@@ -1,3 +1,3 @@
 public interface Running {
-    void run(int steps, Place place);
+    String run(int steps, Place place);
 }

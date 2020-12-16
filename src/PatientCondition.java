@@ -1,5 +1,4 @@
 public interface PatientCondition {
-    void report(Patient patient);
-    void compareMood(Patient patient1, Patient patient2);
-    void status(Patient patient);
+    String compareMood(Patient patient1, Patient patient2);
+    String status(Patient patient);
 }

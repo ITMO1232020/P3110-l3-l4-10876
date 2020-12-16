@@ -1,3 +1,3 @@
 public interface PatientPickUp {
-    void pickUp(Patient patient, Place place);
+    String pickUp(Patient patient, Place place);
 }

@@ -23,9 +23,9 @@ abstract public class Person {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Person)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return name.equals(person.name) &&
+        return name == person.name &&
                 place == person.place;
     }
 
