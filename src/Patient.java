@@ -6,15 +6,7 @@ public class Patient extends Person implements Running, Falling, Resting {
     private boolean hasFallen = false;
     private Health health;
     private final ArrayList<String> illnesses = new ArrayList<String>();
-
-    public Patient () {
-        setName("Unidentified Patient");
-    }
-
-    public Patient(String name){
-        setName(name);
-    }
-
+    
     public Patient(String name, int mood, Health health) {
         setName(name);
         this.mood = mood;
