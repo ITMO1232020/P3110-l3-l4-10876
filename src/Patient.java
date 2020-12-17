@@ -56,18 +56,19 @@ public class Patient extends Person implements Running, Falling, Resting {
         }
         health = Health.SICK;
     }
+
+    public boolean removeIllness (String illness){
+        if(illnesses.contains(illness)) {
+            illnesses.remove(illness);
+            if (illnesses.isEmpty()) health = Health.HEALTHY;
+            return true;
+        }
+        else return false;
+    }
+
     
     public String illnessesCheck () {
         return (getName() + " has following illneses: " + getIllnesses()) + ".";
-    }
-    
-    public String cured (Medic medic, String illness){
-        if(illnesses.contains(illness)) {
-            illnesses.remove(illness);
-            if(illnesses.isEmpty()) health = Health.HEALTHY;
-            return (medic.getName() + " cured " + getName() + "'s " + illness + "!");
-        }
-        else return null;
     }
 
     @Override

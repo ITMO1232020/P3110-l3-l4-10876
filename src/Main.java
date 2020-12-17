@@ -20,7 +20,7 @@ public class Main {
         System.out.println(medicalStaff.pickUp(pulka, Place.BED));
         pulka.addIllness("temperature");
 
-        System.out.println(pulka.cured(medunitsa, "swelling"));
+        System.out.println(medunitsa.cure(pulka, "swelling"));
         System.out.println(pulka.illnessesCheck());
         System.out.println(medunitsa.status(pulka));
 

@@ -1,4 +1,4 @@
-public class Medic extends Person implements PatientPickUp, PatientCondition{
+public class Medic extends Person implements PatientPickUp, PatientCondition, PatientCure{
 
     Medic() {
         setName("Medical Staff");
@@ -12,7 +12,13 @@ public class Medic extends Person implements PatientPickUp, PatientCondition{
         setName(name);
         setPlace(place);
     }
-    
+
+    @Override
+    public String cure(Patient patient, String illness){
+        if (patient.removeIllness(illness)) return (patient.getName() + "'s " + illness + " is cured thanks to " + getName() + ".");
+        else return "Patient given cure for wrong illness. His condition remains the same.";
+    }
+
     @Override
     public String status(Patient patient){
         if (patient.getHealth() == Health.HEALTHY){
