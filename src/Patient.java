@@ -50,7 +50,7 @@ public class Patient extends Person implements Running, Falling, Resting {
         else if (health == Health.SICK && illnesses.isEmpty()) this.health = health;
     }
 
-    protected void addIllness (String illness){
+    public void addIllness (String illness){
         if (!illnesses.contains(illness)){
             illnesses.add(illness);
         }
